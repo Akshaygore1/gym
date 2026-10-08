@@ -1,7 +1,9 @@
 import type { ExerciseDef } from '../data/exercises'
-import type { Feedback, Load } from './state'
+import type { Feedback, Load, Step, Unit } from './state'
+import { weightLabel } from './units'
 
-const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n))
+const clamp = (n: number, lo: number, hi: number) =>
+  Math.min(hi, Math.max(lo, n))
 const roundKg = (n: number) => Math.round(n * 100) / 100
 
 // Fills in defaults. Weight stays undefined until the user picks a first weight.
@@ -21,8 +23,13 @@ export function currentLoad(def: ExerciseDef, saved: Load | undefined): Load {
 
 // Double progression: add reps until the top of the range, then add weight and
 // drop back to the bottom of the range.
-export function applyFeedback(def: ExerciseDef, saved: Load | undefined, fb: Feedback): Load {
+export function applyFeedback(
+  def: ExerciseDef,
+  saved: Load | undefined,
+  fb: Feedback,
+): Load {
   const load = currentLoad(def, saved)
+  if (fb === 'keep') return load
   switch (def.kind) {
     case 'weighted': {
       const [lo, hi] = def.reps
@@ -31,7 +38,10 @@ export function applyFeedback(def: ExerciseDef, saved: Load | undefined, fb: Fee
       if (fb === 'easy') return { weight: roundKg(weight + def.step), reps }
       if (fb === 'hard') {
         if (reps > lo) return { weight, reps: lo }
-        return { weight: roundKg(Math.max(def.min, weight - def.step)), reps: lo }
+        return {
+          weight: roundKg(Math.max(def.min, weight - def.step)),
+          reps: lo,
+        }
       }
       if (reps + 1 > hi) return { weight: roundKg(weight + def.step), reps: lo }
       return { weight, reps: reps + 1 }
@@ -52,16 +62,46 @@ export function applyFeedback(def: ExerciseDef, saved: Load | undefined, fb: Fee
   }
 }
 
-export function formatWeight(def: ExerciseDef, weight: number): string {
-  const kg = `${weight} kg`
-  return def.kind === 'weighted' && def.perHand ? `${kg} each hand` : kg
+export function formatWeight(
+  def: ExerciseDef,
+  weight: number,
+  unit: Unit = 'kg',
+): string {
+  const label = weightLabel(weight, unit)
+  return def.kind === 'weighted' && def.perHand ? `${label} each hand` : label
+}
+
+export function loadForStep(
+  def: ExerciseDef,
+  saved: Load | undefined,
+  step: Step,
+): Load {
+  const load = currentLoad(def, saved)
+  if (
+    step.type === 'strength' &&
+    step.reps &&
+    (def.kind === 'weighted' || def.kind === 'bodyweight')
+  ) {
+    load.reps = clamp(saved?.reps ?? step.reps[0], step.reps[0], step.reps[1])
+  }
+  return load
 }
 
 // Short "3 × 10 @ 20 kg" style summary for lists.
-export function targetSummary(def: ExerciseDef, load: Load, sets: number): string {
+export function targetSummary(
+  def: ExerciseDef,
+  load: Load,
+  sets: number,
+  unit: Unit = 'kg',
+): string {
   switch (def.kind) {
     case 'weighted':
-      return `${sets} × ${load.reps}` + (load.weight === undefined ? ' · pick weight' : ` @ ${formatWeight(def, load.weight)}`)
+      return (
+        `${sets} × ${load.reps}` +
+        (load.weight === undefined
+          ? ' · choose a weight'
+          : ` · ${formatWeight(def, load.weight, unit)}`)
+      )
     case 'bodyweight':
       return `${sets} × ${load.reps}`
     case 'hold':

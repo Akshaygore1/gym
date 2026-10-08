@@ -1,9 +1,19 @@
 import { DAY_SHORT, WEEK_ORDER } from '../lib/dates'
 import type { Minutes } from '../lib/state'
 
-export function DaysPicker({ days, onChange }: { days: number[]; onChange: (days: number[]) => void }) {
+export function DaysPicker({
+  days,
+  onChange,
+}: {
+  days: number[]
+  onChange: (days: number[]) => void
+}) {
   const toggle = (d: number) =>
-    onChange(days.includes(d) ? days.filter((x) => x !== d) : [...days, d].sort((a, b) => a - b))
+    onChange(
+      days.includes(d)
+        ? days.filter((x) => x !== d)
+        : [...days, d].sort((a, b) => a - b),
+    )
   return (
     <div className="days">
       {WEEK_ORDER.map((d) => (
@@ -21,9 +31,15 @@ export function DaysPicker({ days, onChange }: { days: number[]; onChange: (days
   )
 }
 
-const OPTIONS: Minutes[] = [45, 60, 75]
+const OPTIONS: Minutes[] = [20, 30, 45, 60, 75]
 
-export function MinutesPicker({ value, onChange }: { value: Minutes; onChange: (m: Minutes) => void }) {
+export function MinutesPicker({
+  value,
+  onChange,
+}: {
+  value: Minutes
+  onChange: (m: Minutes) => void
+}) {
   return (
     <div className="segmented">
       {OPTIONS.map((m) => (

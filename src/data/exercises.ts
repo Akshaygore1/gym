@@ -105,7 +105,7 @@ const defs: ExerciseDef[] = [
     name: 'Goblet squat',
     cue: 'Hold one dumbbell at your chest. Sit between your heels, chest up, heels down.',
     start: 7.5, step: 2.5, min: 2.5, reps: [8, 12], rest: 90,
-    swaps: ['Leg_Press', 'Hack_Squat', 'Smith_Machine_Squat'],
+    swaps: ['Leg_Press', 'Hack_Squat', 'Smith_Machine_Squat', 'Bodyweight_Squat'],
   },
   {
     kind: 'weighted',
@@ -132,7 +132,7 @@ const defs: ExerciseDef[] = [
     name: 'Dumbbell Romanian deadlift',
     cue: 'Soft knees, push hips back, keep the back flat. Stop when you feel the hamstrings stretch.',
     start: 7.5, step: 2.5, min: 2.5, perHand: true, reps: [8, 12], rest: 90,
-    swaps: ['Seated_Leg_Curl', 'Butt_Lift_Bridge'],
+    swaps: ['Seated_Leg_Curl', 'Butt_Lift_Bridge', 'Single_Leg_Glute_Bridge'],
   },
   {
     kind: 'weighted',
@@ -197,7 +197,7 @@ const defs: ExerciseDef[] = [
     name: 'Dumbbell bench press',
     cue: 'Feet flat, shoulder blades squeezed together. Lower to chest level, press up.',
     start: 5, step: 2.5, min: 2.5, perHand: true, reps: [8, 12], rest: 90,
-    swaps: ['Leverage_Chest_Press', 'Smith_Machine_Bench_Press', 'Pushups'],
+    swaps: ['Leverage_Chest_Press', 'Smith_Machine_Bench_Press', 'Dumbbell_Floor_Press', 'Pushups'],
   },
   {
     kind: 'weighted',
@@ -325,7 +325,7 @@ const defs: ExerciseDef[] = [
     name: 'One-arm dumbbell row',
     cue: 'Hand and knee on a bench, back flat. Pull the dumbbell to your hip. Reps are per arm.',
     start: 7.5, step: 2.5, min: 2.5, reps: [8, 12], rest: 60,
-    swaps: ['Leverage_Iso_Row', 'Seated_Cable_Rows'],
+    swaps: ['Leverage_Iso_Row', 'Seated_Cable_Rows', 'Bent_Over_Two-Dumbbell_Row'],
   },
   {
     kind: 'weighted',
@@ -537,6 +537,65 @@ const defs: ExerciseDef[] = [
     cue: 'Sit tall, elbows tucked in. Press the handles down until arms are straight.',
     start: 15, step: 5, min: 5, reps: [10, 15], rest: 60,
     swaps: ['Triceps_Pushdown_-_Rope_Attachment', 'Machine_Triceps_Extension'],
+  },
+
+  // Home and optional barbell movements. Loads are always chosen by the user.
+  {
+    kind: 'bodyweight', id: 'Bodyweight_Squat', name: 'Bodyweight squat', needs: [],
+    cue: 'Feet comfortably apart. Sit down between your heels, then stand tall. Use a comfortable depth.',
+    reps: [8, 15], rest: 60, swaps: ['Goblet_Squat'],
+  },
+  {
+    kind: 'bodyweight', id: 'Bodyweight_Walking_Lunge', name: 'Bodyweight lunge', needs: [],
+    cue: 'Take a controlled step. Bend both knees within a comfortable range. Reps are per leg; hold a stable support if needed.',
+    reps: [6, 12], rest: 75, swaps: ['Bodyweight_Squat', 'Dumbbell_Lunges'],
+  },
+  {
+    kind: 'bodyweight', id: 'Single_Leg_Glute_Bridge', name: 'Single-leg glute bridge', needs: [],
+    cue: 'One foot flat, hips level. Lift with control and avoid arching your back. Reps are per side.',
+    reps: [8, 15], rest: 60, swaps: ['Butt_Lift_Bridge'],
+  },
+  {
+    kind: 'weighted', id: 'Dumbbell_Floor_Press', name: 'Dumbbell floor press', needs: ['dumbbells'],
+    cue: 'Lie on the floor with bent knees. Lower until your upper arms gently touch the floor, then press. Weight is per hand.',
+    start: 2.5, step: 1, min: 0, perHand: true, reps: [8, 12], rest: 90,
+    swaps: ['Pushups', 'Dumbbell_Bench_Press'],
+  },
+  {
+    kind: 'weighted', id: 'Bent_Over_Two-Dumbbell_Row', name: 'Dumbbell bent-over row', needs: ['dumbbells'],
+    cue: 'Hinge at the hips with soft knees. Keep your back steady and pull both dumbbells toward your hips.',
+    start: 2.5, step: 1, min: 0, perHand: true, reps: [8, 12], rest: 90,
+    swaps: ['One-Arm_Dumbbell_Row', 'Seated_Cable_Rows'],
+  },
+  {
+    kind: 'hold', id: 'Side_Bridge', name: 'Side plank', needs: [],
+    cue: 'Elbow under shoulder, hips lifted. Bend your knees for an easier variation. Hold once on each side.',
+    seconds: [15, 45], rest: 45, swaps: ['Plank', 'Dead_Bug'],
+  },
+  {
+    kind: 'weighted', id: 'Barbell_Full_Squat', name: 'Barbell squat', needs: ['barbell', 'rack'],
+    cue: 'Set the rack safeties before lifting. Brace, squat to a controlled depth, and stand tall. Use a load you can control.',
+    start: 20, step: 2.5, min: 0, reps: [5, 10], rest: 180, swaps: ['Goblet_Squat', 'Leg_Press', 'Bodyweight_Squat'],
+  },
+  {
+    kind: 'weighted', id: 'Barbell_Bench_Press_-_Medium_Grip', name: 'Barbell bench press', needs: ['barbell', 'rack', 'bench'],
+    cue: 'Use appropriate safeties or a spotter. Feet planted, shoulder blades stable. Lower with control; do not bounce.',
+    start: 20, step: 2.5, min: 0, reps: [5, 10], rest: 180, swaps: ['Dumbbell_Bench_Press', 'Leverage_Chest_Press', 'Pushups'],
+  },
+  {
+    kind: 'weighted', id: 'Barbell_Deadlift', name: 'Barbell deadlift', needs: ['barbell'],
+    cue: 'Bar close to your legs. Brace before each rep and push through the floor. Stop if your position breaks down.',
+    start: 20, step: 2.5, min: 0, reps: [5, 8], rest: 180, swaps: ['Stiff-Legged_Dumbbell_Deadlift', 'Butt_Lift_Bridge'],
+  },
+  {
+    kind: 'weighted', id: 'Standing_Military_Press', name: 'Standing barbell press', needs: ['barbell', 'rack'],
+    cue: 'Brace your trunk. Press without leaning back, keeping the bar close to your face as it passes.',
+    start: 20, step: 2.5, min: 0, reps: [5, 10], rest: 150, swaps: ['Dumbbell_Shoulder_Press', 'Machine_Shoulder_Military_Press'],
+  },
+  {
+    kind: 'weighted', id: 'Bent_Over_Barbell_Row', name: 'Barbell row', needs: ['barbell'],
+    cue: 'Hinge at your hips. Keep your torso steady and pull the bar toward your lower ribs. Avoid swinging.',
+    start: 20, step: 2.5, min: 0, reps: [6, 12], rest: 120, swaps: ['Bent_Over_Two-Dumbbell_Row', 'Seated_Cable_Rows'],
   },
 
   // Cool-down stretches

@@ -46,7 +46,11 @@ export const EQUIPMENT_GROUPS = [
   },
   {
     name: 'Free weights',
-    items: [{ id: 'dumbbells', name: 'Dumbbells' }],
+    items: [
+      { id: 'dumbbells', name: 'Dumbbells' },
+      { id: 'barbell', name: 'Barbell and plates' },
+      { id: 'rack', name: 'Squat rack with safeties' },
+    ],
   },
 ] as const
 

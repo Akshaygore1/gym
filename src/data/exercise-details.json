@@ -812,6 +812,189 @@
     ],
     "frames": 2
   },
+  "Bodyweight_Squat": {
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "instructions": [
+      "Stand with your feet shoulder width apart. You can place your hands behind your head. This will be your starting position.",
+      "Begin the movement by flexing your knees and hips, sitting back with your hips.",
+      "Continue down to full depth if you are able,and quickly reverse the motion until you return to the starting position. As you squat, keep your head and chest up and push your knees out."
+    ],
+    "frames": 2
+  },
+  "Bodyweight_Walking_Lunge": {
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings"
+    ],
+    "instructions": [
+      "Begin standing with your feet shoulder width apart and your hands on your hips.",
+      "Step forward with one leg, flexing the knees to drop your hips. Descend until your rear knee nearly touches the ground. Your posture should remain upright, and your front knee should stay above the front foot.",
+      "Drive through the heel of your lead foot and extend both knees to raise yourself back up.",
+      "Step forward with your rear foot, repeating the lunge on the opposite leg."
+    ],
+    "frames": 2
+  },
+  "Single_Leg_Glute_Bridge": {
+    "primaryMuscles": [
+      "glutes"
+    ],
+    "secondaryMuscles": [
+      "hamstrings"
+    ],
+    "instructions": [
+      "Lay on the floor with your feet flat and knees bent.",
+      "Raise one leg off of the ground, pulling the knee to your chest. This will be your starting position.",
+      "Execute the movement by driving through the heel, extending your hip upward and raising your glutes off of the ground.",
+      "Extend as far as possible, pause and then return to the starting position."
+    ],
+    "frames": 2
+  },
+  "Dumbbell_Floor_Press": {
+    "primaryMuscles": [
+      "triceps"
+    ],
+    "secondaryMuscles": [
+      "chest",
+      "shoulders"
+    ],
+    "instructions": [
+      "Lay on the floor holding dumbbells in your hands. Your knees can be bent. Begin with the weights fully extended above you.",
+      "Lower the weights until your upper arm comes in contact with the floor. You can tuck your elbows to emphasize triceps size and strength, or to focus on your chest angle your arms to the side.",
+      "Pause at the bottom, and then bring the weight together at the top by extending through the elbows."
+    ],
+    "frames": 2
+  },
+  "Bent_Over_Two-Dumbbell_Row": {
+    "primaryMuscles": [
+      "middle back"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "lats",
+      "shoulders"
+    ],
+    "instructions": [
+      "With a dumbbell in each hand (palms facing your torso), bend your knees slightly and bring your torso forward by bending at the waist; as you bend make sure to keep your back straight until it is almost parallel to the floor. Tip: Make sure that you keep the head up. The weights should hang directly in front of you as your arms hang perpendicular to the floor and your torso. This is your starting position.",
+      "While keeping the torso stationary, lift the dumbbells to your side (as you breathe out), keeping the elbows close to the body (do not exert any force with the forearm other than holding the weights). On the top contracted position, squeeze the back muscles and hold for a second.",
+      "Slowly lower the weight again to the starting position as you inhale.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "frames": 2
+  },
+  "Side_Bridge": {
+    "primaryMuscles": [
+      "abdominals"
+    ],
+    "secondaryMuscles": [
+      "shoulders"
+    ],
+    "instructions": [],
+    "frames": 2
+  },
+  "Barbell_Full_Squat": {
+    "primaryMuscles": [
+      "quadriceps"
+    ],
+    "secondaryMuscles": [
+      "calves",
+      "glutes",
+      "hamstrings",
+      "lower back"
+    ],
+    "instructions": [
+      "This exercise is best performed inside a squat rack for safety purposes. To begin, first set the bar on a rack just above shoulder level. Once the correct height is chosen and the bar is loaded, step under the bar and place the back of your shoulders (slightly below the neck) across it.",
+      "Hold on to the bar using both arms at each side and lift it off the rack by first pushing with your legs and at the same time straightening your torso.",
+      "Step away from the rack and position your legs using a shoulder-width medium stance with the toes slightly pointed out. Keep your head up at all times and maintain a straight back. This will be your starting position.",
+      "Begin to slowly lower the bar by bending the knees and sitting back with your hips as you maintain a straight posture with the head up. Continue down until your hamstrings are on your calves. Inhale as you perform this portion of the movement.",
+      "Begin to raise the bar as you exhale by pushing the floor with the heel or middle of your foot as you straighten the legs and extend the hips to go back to the starting position.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "frames": 2
+  },
+  "Barbell_Bench_Press_-_Medium_Grip": {
+    "primaryMuscles": [
+      "chest"
+    ],
+    "secondaryMuscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "instructions": [
+      "Lie back on a flat bench. Using a medium width grip (a grip that creates a 90-degree angle in the middle of the movement between the forearms and the upper arms), lift the bar from the rack and hold it straight over you with your arms locked. This will be your starting position.",
+      "From the starting position, breathe in and begin coming down slowly until the bar touches your middle chest.",
+      "After a brief pause, push the bar back to the starting position as you breathe out. Focus on pushing the bar using your chest muscles. Lock your arms and squeeze your chest in the contracted position at the top of the motion, hold for a second and then start coming down slowly again. Tip: Ideally, lowering the weight should take about twice as long as raising it.",
+      "Repeat the movement for the prescribed amount of repetitions.",
+      "When you are done, place the bar back in the rack."
+    ],
+    "frames": 2
+  },
+  "Barbell_Deadlift": {
+    "primaryMuscles": [
+      "lower back"
+    ],
+    "secondaryMuscles": [
+      "calves",
+      "forearms",
+      "glutes",
+      "hamstrings",
+      "lats",
+      "middle back",
+      "quadriceps",
+      "traps"
+    ],
+    "instructions": [
+      "Stand in front of a loaded barbell.",
+      "While keeping the back as straight as possible, bend your knees, bend forward and grasp the bar using a medium (shoulder width) overhand grip. This will be the starting position of the exercise. Tip: If it is difficult to hold on to the bar with this grip, alternate your grip or use wrist straps.",
+      "While holding the bar, start the lift by pushing with your legs while simultaneously getting your torso to the upright position as you breathe out. In the upright position, stick your chest out and contract the back by bringing the shoulder blades back. Think of how the soldiers in the military look when they are in standing in attention.",
+      "Go back to the starting position by bending at the knees while simultaneously leaning the torso forward at the waist while keeping the back straight. When the weights on the bar touch the floor you are back at the starting position and ready to perform another repetition.",
+      "Perform the amount of repetitions prescribed in the program."
+    ],
+    "frames": 2
+  },
+  "Standing_Military_Press": {
+    "primaryMuscles": [
+      "shoulders"
+    ],
+    "secondaryMuscles": [
+      "triceps"
+    ],
+    "instructions": [
+      "Start by placing a barbell that is about chest high on a squat rack. Once you have selected the weights, grab the barbell using a pronated (palms facing forward) grip. Make sure to grip the bar wider than shoulder width apart from each other.",
+      "Slightly bend the knees and place the barbell on your collar bone. Lift the barbell up keeping it lying on your chest. Take a step back and position your feet shoulder width apart from each other.",
+      "Once you pick up the barbell with the correct grip length, lift the bar up over your head by locking your arms. Hold at about shoulder level and slightly in front of your head. This is your starting position.",
+      "Lower the bar down to the collarbone slowly as you inhale.",
+      "Lift the bar back up to the starting position as you exhale.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "frames": 2
+  },
+  "Bent_Over_Barbell_Row": {
+    "primaryMuscles": [
+      "middle back"
+    ],
+    "secondaryMuscles": [
+      "biceps",
+      "lats",
+      "shoulders"
+    ],
+    "instructions": [
+      "Holding a barbell with a pronated grip (palms facing down), bend your knees slightly and bring your torso forward, by bending at the waist, while keeping the back straight until it is almost parallel to the floor. Tip: Make sure that you keep the head up. The barbell should hang directly in front of you as your arms hang perpendicular to the floor and your torso. This is your starting position.",
+      "Now, while keeping the torso stationary, breathe out and lift the barbell to you. Keep the elbows close to the body and only use the forearms to hold the weight. At the top contracted position, squeeze the back muscles and hold for a brief pause.",
+      "Then inhale and slowly lower the barbell back to the starting position.",
+      "Repeat for the recommended amount of repetitions."
+    ],
+    "frames": 2
+  },
   "Kneeling_Hip_Flexor": {
     "primaryMuscles": [
       "quadriceps"

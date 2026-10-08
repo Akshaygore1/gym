@@ -1,19 +1,9 @@
-import { exercise, cardioStage } from '../lib/plan'
-import { currentLoad, targetSummary } from '../lib/progression'
+import { stepName, stepSummary } from '../lib/presentation'
 import type { AppState, Step } from '../lib/state'
 import { ExerciseAnim } from './ExerciseAnim'
-
-const ROLE: Record<string, string> = { warmup: 'Warm-up', main: 'Cardio', finisher: 'Fat-burn finisher' }
-
-function stepSummary(step: Step, state: AppState): string {
-  const def = exercise(step.exerciseId)
-  if (step.type === 'cardio') {
-    const settings = def.kind === 'cardio' ? def.settings(cardioStage(state.sessionsDone)) : []
-    return [`${step.minutes} min`, ...settings].join(' · ')
-  }
-  const sets = step.type === 'strength' ? step.sets : 1
-  return targetSummary(def, currentLoad(def, state.loads[step.exerciseId]), sets)
-}
+import { Icon } from './Icon'
+import { useState } from 'react'
+import { Sheet } from './Sheet'
 
 export function StepList({
   steps,
@@ -26,29 +16,65 @@ export function StepList({
   current?: number
   onInfo: (id: string) => void
 }) {
+  const [activity, setActivity] = useState<Extract<
+    Step,
+    { type: 'activity' }
+  > | null>(null)
   return (
-    <ol className="step-list">
-      {steps.map((step, i) => {
-        const def = exercise(step.exerciseId)
-        const status = current === undefined ? '' : i < current ? 'past' : i === current ? 'now' : ''
-        return (
-          <li key={i} className={status}>
-            <button type="button" onClick={() => onInfo(step.exerciseId)}>
-              <span className="num">{i + 1}</span>
-              <ExerciseAnim id={step.exerciseId} size="thumb" />
-              <span className="text">
-                {step.type === 'cardio' && <span className="tag">{ROLE[step.role]}</span>}
-                {step.type === 'stretch' && <span className="tag">Cool-down stretch</span>}
-                <strong>{def.name}</strong>
-                <span className="muted">{stepSummary(step, state)}</span>
-                {'unavailable' in step && step.unavailable && (
-                  <span className="note">No {exercise(step.unavailable).name.toLowerCase()} at your gym</span>
+    <>
+      <ol className="step-list">
+        {steps.map((step, i) => (
+          <li
+            key={`${i}-${step.exerciseId}`}
+            className={
+              current === undefined
+                ? ''
+                : i < current
+                  ? 'past'
+                  : i === current
+                    ? 'now'
+                    : ''
+            }
+          >
+            <button
+              type="button"
+              onClick={() =>
+                step.type === 'activity'
+                  ? setActivity(step)
+                  : onInfo(step.exerciseId)
+              }
+            >
+              <span className="exercise-index">
+                {current !== undefined && i < current ? (
+                  <Icon name="check" size={16} />
+                ) : (
+                  String(i + 1).padStart(2, '0')
                 )}
               </span>
+              {step.type === 'activity' ? (
+                <span className="activity-thumb">
+                  <Icon name="activity" size={24} />
+                </span>
+              ) : (
+                <ExerciseAnim id={step.exerciseId} size="thumb" />
+              )}
+              <span className="text">
+                <strong>{stepName(step)}</strong>
+                <span className="muted">{stepSummary(step, state)}</span>
+              </span>
+              <Icon name="chevron" size={17} className="list-chevron" />
             </button>
           </li>
-        )
-      })}
-    </ol>
+        ))}
+      </ol>
+      {activity && (
+        <Sheet title={activity.name} onClose={() => setActivity(null)}>
+          <p>{activity.cue}</p>
+          <p className="hint">
+            {activity.minutes} minutes suggested. Take breaks whenever needed.
+          </p>
+        </Sheet>
+      )}
+    </>
   )
 }

@@ -4,8 +4,14 @@ let audio: AudioContext | null = null
 
 // Call from a tap handler so browsers allow sound later (iOS needs this).
 export function unlockAudio() {
-  audio ??= new AudioContext()
-  if (audio.state === 'suspended') void audio.resume()
+  // Sound is optional; browser restrictions must never interrupt set logging.
+  try {
+    if (!globalThis.AudioContext) return
+    audio ??= new AudioContext()
+    if (audio.state === 'suspended') void audio.resume().catch(() => {})
+  } catch {
+    /* Continue silently when audio is unavailable. */
+  }
 }
 
 // Three short beeps plus a vibration where supported (Android only).
@@ -59,13 +65,23 @@ export function useCountdown(endsAt: number | null, onEnd: () => void): number {
 export function useWakeLock() {
   useEffect(() => {
     let lock: WakeLockSentinel | null = null
+    let disposed = false
     const request = () => {
-      navigator.wakeLock?.request('screen').then((l) => (lock = l)).catch(() => {})
+      if (document.visibilityState !== 'visible' || (lock && !lock.released))
+        return
+      navigator.wakeLock
+        ?.request('screen')
+        .then((l) => {
+          if (disposed) void l.release().catch(() => {})
+          else lock = l
+        })
+        .catch(() => {})
     }
     const onVisible = () => document.visibilityState === 'visible' && request()
     request()
     document.addEventListener('visibilitychange', onVisible)
     return () => {
+      disposed = true
       document.removeEventListener('visibilitychange', onVisible)
       void lock?.release()
     }
